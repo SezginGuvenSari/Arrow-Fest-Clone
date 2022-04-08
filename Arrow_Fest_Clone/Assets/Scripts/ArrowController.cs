@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviour
 {
-
+   
     public List<GameObject> arrows = new List<GameObject>();
 
     public float distance;
@@ -12,16 +12,16 @@ public class ArrowController : MonoBehaviour
     public LayerMask layerMask;
     public GameObject arrowPrefab;
     public Transform parent;
-
-
-    void Start()
-    {
-
-    }
+    public int Choose,Number;
+    public bool isDecrease = false;
+    public int speed;
+    public Rigidbody rb;
+   
 
 
     void Update()
     {
+        Move();
         if (Input.GetButton("Fire1"))
         {
             GetRay();
@@ -72,7 +72,59 @@ public class ArrowController : MonoBehaviour
 
         }
 
+    }
 
 
+    public void LogicalChoose()
+    {
+        // 1-Addition
+        // 2-Subtraction
+        // 3-Multiplication
+        // 4-Division
+
+        switch (Choose)
+        {
+            case 1:
+                CreateArrow();
+                break;
+
+            case 2:
+                DestroyArrow();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
+
+    void CreateArrow()
+    {
+        for (int i = 0; i < Number; i++)
+        {
+            GameObject g = Instantiate(arrowPrefab, parent);
+            arrows.Add(g);
+            g.transform.localPosition = Vector3.zero;
+        }
+        isDecrease = false;
+        Diz();
+    }
+
+
+    void DestroyArrow()
+    {
+      
+        for (int i = 0; i < Number; i++)
+        {
+            GameObject g = arrows[arrows.Count - 1];
+            arrows.RemoveAt(arrows.Count - 1);
+            Destroy(g);
+        }
+        Diz();
+    }
+
+    private void Move()
+    {
+        rb.velocity = Vector3.forward * speed * Time.deltaTime;
     }
 }

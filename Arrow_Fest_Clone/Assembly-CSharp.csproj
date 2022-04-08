@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ArrowController.cs" />
+    <Compile Include="Assets\Scripts\TrashManager.cs" />
+    <Compile Include="Assets\Scripts\TrashController.cs" />
+    <Compile Include="Assets\Scripts\CameraMov.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
